@@ -1,0 +1,31 @@
+dependencies: \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Views/RCTModalHostView.m \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Views/RCTModalHostView.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Views/RCTModalHostViewManager.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Views/RCTViewManager.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Base/RCTConvert.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Views/RCTAnimationType.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Views/RCTBorderStyle.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Views/RCTPointerEvents.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Views/RCTTextDecorationLineType.h \
+  /Users/Ariadni/Documents/toDolist/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/Ariadni/Documents/toDolist/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/Ariadni/Documents/toDolist/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Base/RCTEventDispatcher.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Views/UIView+React.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Views/RCTComponent.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Views/RCTView.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Views/RCTModalHostViewController.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Base/RCTTouchHandler.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Modules/RCTUIManager.h \
+  /Users/Ariadni/Documents/toDolist/node_modules/react-native/React/Base/RCTRootView.h
