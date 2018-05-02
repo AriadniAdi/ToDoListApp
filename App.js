@@ -11,9 +11,9 @@ import {
   Text,
   View,
   FlatList,
-  CheckBox,
   TextInput,
-  Button
+  Button,
+  CheckBox
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -25,12 +25,42 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
-  getTasks() {
-    let items = []
+  constructor(props) {
+    super(props);
+    this.state = { 
+      tasks: [],
+      taskTitle: '',
+      taskDate: '',
+      taskHour: ''
+     }
+  }
+
+  // TODO: PEGAR DADOS DO BANCO DE DADOS
+  fetchTasks() {
     for(var i = 0; i < 20 ; i++) {
-      items.push({ id: '1', title: 'título', date: '17/11/2018', hour: '16:00', done: false })
+      this.insertTask({ id: generateId(), title: 'título', date: '17/11/2018', hour: '16:00'})
     }
-    return items
+  }
+
+  saveTask = () => {
+    let task = {
+      id: generateId(),
+      title: this.state.taskTitle,
+      date: this.state.taskDate,
+      hour: this.state.taskHour,
+    }
+    this.insertTask(task)
+  }
+
+  insertTask(task) {
+    this.setState(previousState => {
+      previousState.tasks.push(task)
+      return { tasks: previousState.tasks };
+    });
+  }
+
+  componentDidMount() {
+    this.fetchTasks()
   }
 
   render() {
@@ -39,13 +69,13 @@ export default class App extends Component<Props> {
         <View style={{ backgroundColor: 'pink', flexDirection: 'column', alignItems: 'stretch', padding: 10 }}>
           <View>
             <Text> Filho </Text>
-            <TextInput> ex: Estudar React Native... </TextInput>
+            <TextInput onChangeText={(text) => this.setState({ taskTitle: text })} />
           </View>
           <View>
             <Text>Irmão</Text>
             <View style={{ flexDirection: 'row'}}>
-                <TextInput> 06/06/2018 </TextInput> 
-                <TextInput> 15:30 </TextInput>
+                <TextInput onChangeText={(text) => this.setState({ taskDate: text })} />
+                <TextInput onChangeText={(text) => this.setState({ taskHour: text })} />
             </View>
           </View>
         </View>
@@ -53,17 +83,21 @@ export default class App extends Component<Props> {
           <Text style={{ marginLeft: 16, marginTop: 40, marginBottom: 20, alignItems: 'center', justifyContent: 'center', fontSize: 20, flex: 1 }}>
             Minhas Atividades
           </Text>
-          <Button title='botão'/>
+          <Button title='botão' onPress = {this.saveTask} />
         </View>
         <FlatList style={{ flex: 1 }}
-        keyExtractor = { item => item.id }
-        data = {this.getTasks()}
+        keyExtractor = { task => task.id }
+        data = { this.state.tasks }
         renderItem = {({item}) => <TaskCell task={item}> </TaskCell>}
         />
       </View>
     );
   }
 }
+
+function generateId () {
+  return Math.random().toString(36).substr(2, 9);
+};
 
 class TaskCell extends Component<Props> {
   render() {
