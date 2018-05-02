@@ -1,9 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
+import TaskService from './taskService';
 import React, { Component } from 'react';
 import {
   Platform,
@@ -16,47 +11,49 @@ import {
   CheckBox
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
 type Props = {};
 export default class App extends Component<Props> {
   constructor(props) {
     super(props);
+    this.taskService = new TaskService()
+
     this.state = { 
       tasks: [],
+      taskId: null,
       taskTitle: '',
       taskDate: '',
       taskHour: ''
      }
   }
 
-  // TODO: PEGAR DADOS DO BANCO DE DADOS
-  fetchTasks() {
-    for(var i = 0; i < 20 ; i++) {
-      this.insertTask({ id: generateId(), title: 'título', date: '17/11/2018', hour: '16:00'})
-    }
+  async fetchTasks() {
+    let tasks = await this.taskService.getAllTasks();
+    this.setState(previousState => {
+      return { tasks: tasks };
+    });
   }
 
-  saveTask = () => {
-    let task = {
-      id: generateId(),
-      title: this.state.taskTitle,
-      date: this.state.taskDate,
-      hour: this.state.taskHour,
-    }
-    this.insertTask(task)
+  async saveNewTask = () => {
+    let newTask = this.getTask()
+    newTask.id = generateId()
+    await this.taskService.insertTask(newTask);
+    this.updateTasksList(newTask)
   }
 
-  insertTask(task) {
+  updateTasksList(task) {
     this.setState(previousState => {
       previousState.tasks.push(task)
       return { tasks: previousState.tasks };
     });
+  }
+
+  getTask() {
+    return {
+      id: this.state.taskId,
+      title: this.state.taskTitle,
+      date: this.state.taskDate,
+      hour: this.state.taskHour,
+    }
   }
 
   componentDidMount() {
@@ -66,25 +63,19 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{ backgroundColor: 'pink', flexDirection: 'column', alignItems: 'stretch', padding: 10 }}>
-          <View>
-            <Text> Filho </Text>
-            <TextInput onChangeText={(text) => this.setState({ taskTitle: text })} />
-          </View>
-          <View>
-            <Text>Irmão</Text>
-            <View style={{ flexDirection: 'row'}}>
-                <TextInput onChangeText={(text) => this.setState({ taskDate: text })} />
-                <TextInput onChangeText={(text) => this.setState({ taskHour: text })} />
-            </View>
-          </View>
-        </View>
+        <Header 
+          onChangeTitle= {(text) => this.setState({ taskTitle: text }) }
+          onChangeDate= {(text) => this.setState({ taskDate: text }) }
+          onChangeHour= {(text) => this.setState({ taskHour: text }) }
+        />
+        
         <View style={{ flexDirection: 'row'}}>
           <Text style={{ marginLeft: 16, marginTop: 40, marginBottom: 20, alignItems: 'center', justifyContent: 'center', fontSize: 20, flex: 1 }}>
             Minhas Atividades
           </Text>
-          <Button title='botão' onPress = {this.saveTask} />
+          <Button title='botão' onPress = {this.saveNewTask} />
         </View>
+
         <FlatList style={{ flex: 1 }}
         keyExtractor = { task => task.id }
         data = { this.state.tasks }
@@ -98,6 +89,26 @@ export default class App extends Component<Props> {
 function generateId () {
   return Math.random().toString(36).substr(2, 9);
 };
+
+class Header extends Component<Props> {
+  render() {
+    return (
+      <View style={{ backgroundColor: 'pink', flexDirection: 'column', alignItems: 'stretch', padding: 10 }}>
+          <View>
+            <Text> Filho </Text>
+            <TextInput onChangeText={(text) => this.props.onChangeTitle(text) } />
+          </View>
+          <View>
+            <Text>Irmão</Text>
+            <View style={{ flexDirection: 'row'}}>
+                <TextInput onChangeText={(text) => this.props.onChangeDate(text) } />
+                <TextInput onChangeText={(text) => this.props.onChangeHour(text) } />
+            </View>
+          </View>
+      </View>
+    );
+  }
+}
 
 class TaskCell extends Component<Props> {
   render() {
