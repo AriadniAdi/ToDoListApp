@@ -1,3 +1,4 @@
+import TaskCell from './taskCell';
 import TaskService from './taskService';
 import React, { Component } from 'react';
 import {
@@ -33,9 +34,10 @@ export default class App extends Component<Props> {
     });
   }
 
-  async saveNewTask = () => {
+  async saveNewTask () {
     let newTask = this.getTask()
     newTask.id = generateId()
+    
     await this.taskService.insertTask(newTask);
     this.updateTasksList(newTask)
   }
@@ -62,21 +64,21 @@ export default class App extends Component<Props> {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <Header 
           onChangeTitle= {(text) => this.setState({ taskTitle: text }) }
           onChangeDate= {(text) => this.setState({ taskDate: text }) }
           onChangeHour= {(text) => this.setState({ taskHour: text }) }
         />
         
-        <View style={{ flexDirection: 'row'}}>
-          <Text style={{ marginLeft: 16, marginTop: 40, marginBottom: 20, alignItems: 'center', justifyContent: 'center', fontSize: 20, flex: 1 }}>
+        <View style={styles.alignList}>
+          <Text style={styles.activities}>
             Minhas Atividades
           </Text>
           <Button title='botão' onPress = {this.saveNewTask} />
         </View>
 
-        <FlatList style={{ flex: 1 }}
+        <FlatList style={styles.listTask}
         keyExtractor = { task => task.id }
         data = { this.state.tasks }
         renderItem = {({item}) => <TaskCell task={item}> </TaskCell>}
@@ -93,14 +95,14 @@ function generateId () {
 class Header extends Component<Props> {
   render() {
     return (
-      <View style={{ backgroundColor: 'pink', flexDirection: 'column', alignItems: 'stretch', padding: 10 }}>
+      <View style={styles.task}>
           <View>
             <Text> Filho </Text>
             <TextInput onChangeText={(text) => this.props.onChangeTitle(text) } />
           </View>
           <View>
             <Text>Irmão</Text>
-            <View style={{ flexDirection: 'row'}}>
+            <View style={styles.dateAndHour}>
                 <TextInput onChangeText={(text) => this.props.onChangeDate(text) } />
                 <TextInput onChangeText={(text) => this.props.onChangeHour(text) } />
             </View>
@@ -110,46 +112,30 @@ class Header extends Component<Props> {
   }
 }
 
-class TaskCell extends Component<Props> {
-  render() {
-    return (
-      <View style={{flexDirection: 'row', padding: 2, paddingTop: 8, paddingBottom: 8, borderBottomWidth: StyleSheet.hairlineWidth }}>
-          <View style={{ justifyContent: 'center', alignItems: 'center'}}>
-              <CheckBox style= {{ marginLeft: 10, marginRight: 10 }} />
-          </View>
-          <View style={{height: 50, flex: 1, alignItems: 'stretch', flexDirection: 'column', justifyContent: 'space-between'}}>
-            <View style={{ flex: 1}}>
-              <Text>
-                {this.props.task.title}
-              </Text>      
-            </View>
-            <View style={{ flexDirection: 'row', flex: 1}}>
-            <Text>
-              XX
-            </Text>
-            <Text>
-                {this.props.task.date}
-                -
-                {this.props.task.hour}
-            </Text>
-            </View>
-          </View>
-      </View>
-    );
-  }
-}
-
 const styles = StyleSheet.create({
-  taskCellItem: {
-    height: 40,
+  activities: {
+      marginLeft: 16, 
+      marginTop: 40, 
+      marginBottom: 20, 
+      alignItems: 'center',
+      justifyContent: 'center', 
+      fontSize: 20, 
+      flex: 1
   },
-  taskCell: {
-    flex: 1,
+  task: {
+    backgroundColor: 'pink',
     flexDirection: 'column',
-  },
-  container: {
     alignItems: 'stretch',
-    flex: 1,
-    backgroundColor: '#F5FCFF',
+    padding: 10 
+  },
+  listTask: {
+    flex: 1 
+  },
+  alignList: {
+    flexDirection: 'row'
+  },
+  dateAndHour: { 
+  flexDirection: 'row'
   }
+
 });
