@@ -59,25 +59,26 @@ export default class Main extends Component {
     )
   }
 
-  async onCreateTask() {
-    let newTask = this.getTask()
-    newTask.id = this.generateId()
+  onCreateTask() {
+    let newTask = this.getTask();
+    newTask.id = this.generateId();
     
-    await this.taskService.saveTask(newTask);
-    this.insertTaskInScreen(newTask)
+    this.insertTaskInScreen(newTask);
+    this.taskService.saveTask(newTask);
   }
 
   insertTaskInScreen(task) {
     this.setState(previousState => {
-      previousState.tasks.push(task)
-      return { tasks: previousState.tasks };
+      return { tasks: [...previousState.tasks, task] };
     });
   }
 
   deleteTaskOfScreen(task) {
     this.setState(previousState => {
-      previousState.tasks.splice(task, 1)
-      return { tasks: previousState.tasks };
+      var tasks = previousState.tasks.filter((item) => {
+        return item !== task
+      });
+      return { tasks: tasks };
     });
   }
 
