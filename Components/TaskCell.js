@@ -1,11 +1,11 @@
 import Swipeout from 'react-native-swipeout';
+import { CheckBox } from 'react-native-elements';
 
 import React, { Component } from 'react';
 import {
     View,
     Text,
-    StyleSheet,
-    CheckBox
+    StyleSheet
 } from 'react-native'
 
 export default class TaskCell extends Component {
@@ -42,6 +42,7 @@ export default class TaskCell extends Component {
             <View style={styles.taskCell}>
                 <View style={styles.checkBoxArea}>
                 {/* <CheckBox checked containerStyle={{backgroundColor: 'pink'}}/> */}
+                <CheckBox checkedColor='red' />
                     <CheckBox checkedColor='pink'
                     style={styles.checkBox}
                     onChange={() => this.props.onFinishTask() }
@@ -88,8 +89,7 @@ const styles = StyleSheet.create({
     },
     checkBox: {
         marginLeft: 10,
-        marginRight: 10,
-        size: 30
+        marginRight: 10
     },
     taskCellInfo: {
         height: 50,
