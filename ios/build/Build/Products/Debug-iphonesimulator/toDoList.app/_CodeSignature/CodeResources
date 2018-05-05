@@ -71,7 +71,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		1coQNaYM/fiFMUGE4mo6yqhRAkM=
+		0zxrbU5SpV4eQHpNvmoqGTNX5M4=
 		</data>
 		<key>Ionicons.ttf</key>
 		<data>
@@ -88,6 +88,10 @@
 		<key>Octicons.ttf</key>
 		<data>
 		+YreAPYbFuBieFv6gKSQafXjk7M=
+		</data>
+		<key>PangolinRegular.ttf</key>
+		<data>
+		UJzNAVJDU19X4ONkXkdQTmZmaN4=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -112,6 +116,18 @@
 		<key>PlugIns/toDoListTests.xctest/toDoListTests</key>
 		<data>
 		bie1e/mZo6ghEGBya8JChM221MA=
+		</data>
+		<key>RobotoLight.ttf</key>
+		<data>
+		c6K7LW5ZGpD/tO0RijmJ+xe1THs=
+		</data>
+		<key>RobotoMedium.ttf</key>
+		<data>
+		Xxb01tu0pPEtiulkiKwgm7SXYqU=
+		</data>
+		<key>RobotoRegular.ttf</key>
+		<data>
+		3RsdsT/x9yE4wTTGLzj++DdJ82o=
 		</data>
 		<key>SimpleLineIcons.ttf</key>
 		<data>
@@ -335,6 +351,17 @@
 			NC9CWcIUkNdDyFv9XLIgM5voHcU7RU+sU2mnqmpBMI4=
 			</data>
 		</dict>
+		<key>PangolinRegular.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			UJzNAVJDU19X4ONkXkdQTmZmaN4=
+			</data>
+			<key>hash2</key>
+			<data>
+			MD4T4dN7g4IoKRQlYUzoOD0dtqgqZZbFMu1GXo7xiwo=
+			</data>
+		</dict>
 		<key>PlugIns/toDoListTests.xctest.dSYM/Contents/Info.plist</key>
 		<dict>
 			<key>hash</key>
@@ -388,6 +415,39 @@
 			<key>hash2</key>
 			<data>
 			Vg5+Zte9QDJVifDfrPkcpQvdiPBT/vOEybWIqs7EiVE=
+			</data>
+		</dict>
+		<key>RobotoLight.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			c6K7LW5ZGpD/tO0RijmJ+xe1THs=
+			</data>
+			<key>hash2</key>
+			<data>
+			ptND1CW8ONuQFS+gYFixxzkeypJk8zTvZcHOF1CFxvY=
+			</data>
+		</dict>
+		<key>RobotoMedium.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Xxb01tu0pPEtiulkiKwgm7SXYqU=
+			</data>
+			<key>hash2</key>
+			<data>
+			8gXMURgh6lYHihBVV/zqYlMSlATUEcmX4YZvvQBqu2g=
+			</data>
+		</dict>
+		<key>RobotoRegular.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			3RsdsT/x9yE4wTTGLzj++DdJ82o=
+			</data>
+			<key>hash2</key>
+			<data>
+			eehRQEZX2sIQaz0irSVtR4JKmldlRY7bcskQKkWBbZU=
 			</data>
 		</dict>
 		<key>SimpleLineIcons.ttf</key>
