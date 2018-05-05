@@ -64,6 +64,10 @@
 		<string>Feather.ttf</string>
 		<string>MaterialCommunityIcons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
+		<string>RobotoLight.tff</string>
+		<string>RobotoMedium.tff</string>
+		<string>RobotoRegular.tff</string>
+		<string>PangolinRegular.ttf</string>
 	</array>
 </dict>
 </plist>
