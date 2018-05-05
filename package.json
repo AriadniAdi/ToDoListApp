@@ -16,15 +16,14 @@
     "mdi": "^2.2.43",
     "react": "16.3.1",
     "react-native": "0.55.3",
-    "react-native-circle-button": "^1.0.9",
+    "react-native-custom-checkbox": "^1.5.2",
     "react-native-drawer": "^2.5.0",
     "react-native-elements": "^0.19.1",
     "react-native-hamburger": "0.0.2",
     "react-native-material-design": "^0.3.7",
     "react-native-material-ui": "^1.22.3",
     "react-native-swipe-list-view": "^1.1.1",
-    "react-native-swipeout": "^2.3.3",
-    "react-native-vector-icons": "^4.6.0"
+    "react-native-swipeout": "^2.3.3"
   },
   "devDependencies": {
     "babel-jest": "22.4.3",

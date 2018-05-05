@@ -1,11 +1,12 @@
 import Swipeout from 'react-native-swipeout';
-import { CheckBox } from 'react-native-elements';
+import Checkbox from 'react-native-custom-checkbox';
 
 import React, { Component } from 'react';
 import {
     View,
     Text,
-    StyleSheet
+    StyleSheet,
+    CheckBox
 } from 'react-native'
 
 export default class TaskCell extends Component {
@@ -41,12 +42,15 @@ export default class TaskCell extends Component {
         <Swipeout {...swipeSettings} >
             <View style={styles.taskCell}>
                 <View style={styles.checkBoxArea}>
-                {/* <CheckBox checked containerStyle={{backgroundColor: 'pink'}}/> */}
-                <CheckBox checkedColor='red' />
-                    <CheckBox checkedColor='pink'
+                    {/* <CheckBox checkedColor='pink'
                     style={styles.checkBox}
                     onChange={() => this.props.onFinishTask() }
-                    />
+                    /> */}
+                    <Checkbox
+                    checked={false}
+                    size={30}
+                    style={{backgroundColor: '#e54987', color:'#6056a0', borderRadius: 5, marginLeft: 10, marginRight: 10}}
+                    onChange={() => this.props.onFinishTask() }/>
                 </View>
                 <View style={styles.taskCellInfo}>
                     <View style={styles.alignCell}>
@@ -87,10 +91,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'column',
     },
-    checkBox: {
-        marginLeft: 10,
-        marginRight: 10
-    },
+    // checkBox: {
+    //     marginLeft: 10,
+    //     marginRight: 10
+    // },
     taskCellInfo: {
         height: 50,
         flex: 1,
