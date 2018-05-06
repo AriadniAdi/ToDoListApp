@@ -21,17 +21,21 @@ export default class TaskCell extends Component {
     }
 
     onCancelEditing() {
-        this.setState(previousState => {
-            return { isEditing: false };
-        });
+        this.finishEditing();
         this.props.onCancelEditing();
     }
-
+    
     onStartEditing() {
         this.setState(previousState => {
             return { isEditing: true };
         });
-        this.props.onEditTask()
+        this.props.onEditingTask(this);
+    }
+
+    finishEditing() {
+        this.setState(previousState => {
+            return { isEditing: false };
+        });
     }
 
     render() {

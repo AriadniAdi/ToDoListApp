@@ -23,6 +23,7 @@ export default class Main extends Component {
     this.taskService = new TaskService();
 
     this.state = {
+      currentEditingCell: null,
       tasks: [],
       taskId: null,
       taskTitle: "",
@@ -35,9 +36,14 @@ export default class Main extends Component {
     this.cleanFields();
   }
 
-  onEditTask(task) {
+  onEditingTask(task, cell) {
+    if (this.state.currentEditingCell) {
+      this.state.currentEditingCell.finishEditing();
+    }
+
     this.setState(previousState => {
       return {
+        currentEditingCell: cell,
         taskId: task.id,
         taskTitle: task.title,
         taskDate: task.date,
@@ -79,6 +85,7 @@ export default class Main extends Component {
       this.insertTaskInScreen(task);
     }
     this.cleanFields();
+    this.state.currentEditingCell.finishEditing();
   }
 
   isAnUpdate(task) {
@@ -88,6 +95,7 @@ export default class Main extends Component {
   cleanFields() {
     this.setState(previousState => {
       return {
+        currentEditingCell: null,
         taskId: null,
         taskTitle: "",
         taskDate: "",
@@ -174,7 +182,7 @@ export default class Main extends Component {
               <TaskCell
                 task={item}
                 onFinishTask={() => this.onFinishTask(item)}
-                onEditTask={() => this.onEditTask(item)}
+                onEditingTask={cell => this.onEditingTask(item, cell)}
                 onDeleteTask={() => this.onDeleteTask(item)}
                 onCancelEditing={() => this.onCancelEditing()}
               />}
