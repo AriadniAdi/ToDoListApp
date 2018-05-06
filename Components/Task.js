@@ -14,13 +14,22 @@ export default class Task extends Component {
       <ImageBackground source={require('../app/images/background_sample.png')} style={styles.task}>
           <View>
             <Text style={styles.defaultLabel}>Atividade:</Text>
-            <CustomTextInput placeholder='ex: Estudar React Native...' onChangeText={(text) => this.props.onChangeTitle(text) } />
+            <CustomTextInput 
+              value={this.props.titleValue}
+              placeholder='ex: Estudar React Native...' 
+              onChangeText={(text) => this.props.onChangeTitle(text) } />
           </View>
           <View>
             <Text style={styles.defaultLabel}>Me lembrar de fazer em:</Text>
-            <View style={{flexDirection: 'row'}}>
-                <CustomTextInput placeholder='ex: 04/05/2018' styles={styles.dateAndHour} onChangeText={(text) => this.props.onChangeDate(text) } />
-                <CustomTextInput placeholder='ex: 20:21' styles={styles.dateAndHour} onChangeText={(text) => this.props.onChangeHour(text) } />
+            <View style={{flexDirection: 'row', marginBottom: 20 }}>
+                <CustomTextInput 
+                  value={this.props.dateValue}
+                  placeholder='ex: 04/05/2018' 
+                  styles={styles.dateAndHour} onChangeText={(text) => this.props.onChangeDate(text) } />
+                <CustomTextInput
+                  value={this.props.hourValue}
+                  placeholder='ex: 20:21' 
+                  styles={styles.dateAndHour} onChangeText={(text) => this.props.onChangeHour(text) } />
             </View>
           </View>
       </ImageBackground>
@@ -35,7 +44,8 @@ export class CustomTextInput extends Component {
         underlineColorAndroid='transparent' 
         placeholderTextColor='#efefef'
         style={[styles.defaultTextInput, this.props.styles]}
-        placeholder={this.props.placeholder} 
+        placeholder={this.props.placeholder}
+        value={this.props.value}
         onChangeText={(text) => this.props.onChangeText(text) } />
       </View>
       )
@@ -54,6 +64,8 @@ const styles = StyleSheet.create({
       borderRadius: 6,
       paddingRight: 20,
       paddingLeft: 20,
+      paddingBottom: 15,
+      paddingTop: 15,
       color: 'white'
     },
     dateAndHour: { 
@@ -65,7 +77,6 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         padding: 20,
         paddingTop: 10,
-        paddingBottom: 40,
-        flex: 1
+        paddingBottom: 40
     }
   });

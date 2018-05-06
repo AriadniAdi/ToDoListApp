@@ -31,8 +31,19 @@ export default class Main extends Component {
      }
   }
 
+  onCancelEditing() {
+    this.cleanFields();
+  }
+
   onEditTask(task) {
-    // Não finalizado ainda
+    this.setState(previousState => {
+      return { 
+        taskId: task.id,
+        taskTitle: task.title, 
+        taskDate: task.date,
+        taskHour: task.hour 
+      };
+    });
   }
 
   onFinishTask(task) {
@@ -59,12 +70,38 @@ export default class Main extends Component {
     )
   }
 
-  onCreateTask() {
-    let newTask = this.getTask();
-    newTask.id = this.generateId();
-    
-    this.insertTaskInScreen(newTask);
-    this.taskService.saveTask(newTask);
+  onSaveTask() {
+    let task = this.getTaskFromFields();
+    this.taskService.saveTask(task);
+    if(this.isAnUpdate(task)) {
+      this.updateTaskInScreen(task);
+    } else {
+      this.insertTaskInScreen(task);
+    }
+    this.cleanFields();
+  }
+
+  isAnUpdate(task) {
+    return this.state.tasks.some(element => element.id == task.id);
+  }
+
+  cleanFields() {
+    this.setState(previousState => {
+      return { 
+        taskId: null,
+        taskTitle: '', 
+        taskDate: '',
+        taskHour: '' 
+      };
+    });
+  }
+
+  updateTaskInScreen(task) {
+    this.setState(previousState => {
+      let indexOfTask = previousState.tasks.findIndex(element => element.id == task.id);
+      previousState.tasks[indexOfTask] = task;
+      return { tasks: [...previousState.tasks] };
+    });
   }
 
   insertTaskInScreen(task) {
@@ -76,22 +113,22 @@ export default class Main extends Component {
   deleteTaskOfScreen(task) {
     this.setState(previousState => {
       var tasks = previousState.tasks.filter((item) => {
-        return item !== task
+        return item.id !== task.id
       });
       return { tasks: tasks };
     });
   }
 
-  getTask() {
+  getTaskFromFields() {
     return {
-      id: this.state.taskId,
+      id: this.state.taskId || this.getNewId(),
       title: this.state.taskTitle,
       date: this.state.taskDate,
-      hour: this.state.taskHour,
+      hour: this.state.taskHour
     }
   }
 
-  generateId () {
+  getNewId() {
     return Math.random().toString(36).substr(2, 9);
   };
 
@@ -111,12 +148,17 @@ export default class Main extends Component {
     return (
         <View style={styles.container}>
           <Task style={{ flex: 1 }}
-              onChangeTitle= {(text) => this.setState({ taskTitle: text }) }
-              onChangeDate= {(text) => this.setState({ taskDate: text }) }
-              onChangeHour= {(text) => this.setState({ taskHour: text }) }
+              
+              titleValue={this.state.taskTitle}
+              dateValue={this.state.taskDate}
+              hourValue={this.state.taskHour}
+
+              onChangeTitle={(text) => this.setState({ taskTitle: text }) }
+              onChangeDate={(text) => this.setState({ taskDate: text }) }
+              onChangeHour={(text) => this.setState({ taskHour: text }) }
           />
           <View style={styles.buttonArea} >
-          <TouchableOpacity style={styles.circle} onPress={() => this.onCreateTask()}/>
+          <TouchableOpacity style={styles.circle} onPress={() => this.onSaveTask()}/>
           </View>
           <View style={{ backgroundColor: 'white', flex: 2 }}>
               <Text style={styles.activities}> Minhas Atividades </Text>
@@ -129,7 +171,8 @@ export default class Main extends Component {
                     task={item}
                     onFinishTask={() => this.onFinishTask(item)}
                     onEditTask={() => this.onEditTask(item)}
-                    onDeleteTask={() => this.onDeleteTask(item)} 
+                    onDeleteTask={() => this.onDeleteTask(item)}
+                    onCancelEditing={() => this.onCancelEditing()}
                   />}
               /> 
           </View>
@@ -148,8 +191,7 @@ const styles = StyleSheet.create({
       marginTop: 20,
       marginBottom: 4,
       fontSize: 20, 
-      height: 40,
-      fontFamily: 'PangolinRegular'
+      height: 40
   },
   listTask: {
     flex: 1

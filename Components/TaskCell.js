@@ -8,11 +8,32 @@ import {
     View,
     Text,
     StyleSheet,
-    TouchableWithoutFeedback,
-    Alert
+    Alert,
+    TouchableHighlight
 } from 'react-native'
 
 export default class TaskCell extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            isEditing: false
+        }
+    }
+
+    onCancelEditing() {
+        this.setState(previousState => {
+            return { isEditing: false };
+        });
+        this.props.onCancelEditing();
+    }
+
+    onStartEditing() {
+        this.setState(previousState => {
+            return { isEditing: true };
+        });
+        this.props.onEditTask()
+    }
 
     render() {
         let swipeBtns = [
@@ -20,17 +41,13 @@ export default class TaskCell extends Component {
                 text: 'Delete',
                 backgroundColor: 'red',
                 underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
-                onPress: () => { 
-                    {this.props.onDeleteTask()}
-                }
+                onPress: () => this.props.onDeleteTask()
             },
             {
                 text: 'Edit',
                 backgroundColor: 'green',
                 underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
-                onPress: () => { 
-                    {this.props.onEditTask()}
-                }
+                onPress: () => this.onStartEditing()
             },
         ];
 
@@ -42,7 +59,7 @@ export default class TaskCell extends Component {
         }
       
       return (
-        <Swipeout {...swipeSettings} >
+        <Swipeout {...swipeSettings} autoClose>
             <View style={styles.taskCell}>
                 <View style={styles.checkBoxArea}>
                     <CheckBox 
@@ -65,18 +82,25 @@ export default class TaskCell extends Component {
                         {this.props.task.title}
                         </Text>      
                     </View>
-                <View style={styles.taskAlert}>
-                <Text>
-                    XX
-                    {/* <Bell/> */}
-                </Text>
-                <Text>
-                    {this.props.task.date}
-                    -
-                    {this.props.task.hour}
-                </Text>
+                    <View style={styles.taskAlert}>
+                        <Text>
+                            XX
+                            {/* <Bell/> */}
+                        </Text>
+                        <Text>
+                            {this.props.task.date}
+                            -
+                            {this.props.task.hour}
+                        </Text>
+                    </View>
                 </View>
-                </View>
+                { this.state.isEditing &&
+                    <View>
+                        <TouchableHighlight onPress={() => this.onCancelEditing()} >
+                            <Text>Cancelar</Text>
+                        </TouchableHighlight>
+                    </View>
+                }
             </View>
 
         </Swipeout>
