@@ -1,7 +1,6 @@
 import Swipeout from 'react-native-swipeout';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import CheckBox from './CheckBox';
-// import { Bell } from 'mdi-material-ui';
 
 import React, { Component } from 'react';
 import {
@@ -83,10 +82,7 @@ export default class TaskCell extends Component {
                         </Text>      
                     </View>
                     <View style={styles.taskAlert}>
-                        <Text>
-                            XX
-                            {/* <Bell/> */}
-                        </Text>
+                        <Icon name="bell-ring" size={20} color="e3e3e3" />
                         <Text>
                             {this.props.task.date}
                             -

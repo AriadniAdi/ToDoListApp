@@ -1,6 +1,6 @@
 import { COLOR, ThemeProvider } from 'react-native-material-ui';
 import React, { Component } from 'react';
-import Main from './Components/Main.js'
+import Main from './app/Main.js'
 
 const uiTheme = {
   palette: {

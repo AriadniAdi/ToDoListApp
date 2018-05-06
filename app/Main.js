@@ -1,6 +1,6 @@
-import TaskCell from "./TaskCell";
-import TaskService from "../taskService";
-import Task from "./Task";
+import TaskCell from "./Components/TaskCell";
+import TaskService from "./taskService";
+import Task from "./Components/Task";
 
 import React, { Component } from "react";
 import {
