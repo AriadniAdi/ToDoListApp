@@ -1,4 +1,5 @@
 import CustomTextInput from "./customTextInput";
+import DatePicker from "./DatePicker";
 
 import React, { Component } from "react";
 import {
@@ -11,6 +12,11 @@ import {
 } from "react-native";
 
 export default class Task extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { date: "" };
+  }
+
   render() {
     return (
       <ImageBackground
@@ -27,19 +33,20 @@ export default class Task extends Component {
         </View>
         <View>
           <Text style={styles.defaultLabel}>Me lembrar de fazer em:</Text>
-          <View style={{ flexDirection: "row", marginBottom: 20 }}>
-            <CustomTextInput
+          <View style={{ flexDirection: "row", marginBottom: 20, height: 50}}>
+            <DatePicker 
+              mode="datetime"
+              placeholder="06/05/2018"
               value={this.props.dateValue}
-              placeholder="ex: 04/05/2018"
-              styles={styles.dateAndHour}
-              onChangeText={text => this.props.onChangeDate(text)}
-            />
-            <CustomTextInput
+              onChangeValue={date => this.props.onChangeDate(date)} />
+
+              <DatePicker 
+              mode="time"
+              placeholder="15:30"
               value={this.props.hourValue}
-              placeholder="ex: 20:21"
               styles={styles.dateAndHour}
-              onChangeText={text => this.props.onChangeHour(text)}
-            />
+              onChangeValue={hour => this.props.onChangeHour(hour)}
+               />
           </View>
         </View>
       </ImageBackground>

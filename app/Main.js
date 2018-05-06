@@ -81,11 +81,11 @@ export default class Main extends Component {
     this.taskService.saveTask(task);
     if (this.isAnUpdate(task)) {
       this.updateTaskInScreen(task);
+      this.state.currentEditingCell.finishEditing();
     } else {
       this.insertTaskInScreen(task);
     }
     this.cleanFields();
-    this.state.currentEditingCell.finishEditing();
   }
 
   isAnUpdate(task) {
