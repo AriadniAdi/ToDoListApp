@@ -82,7 +82,7 @@ export default class TaskCell extends Component {
                         </Text>      
                     </View>
                     <View style={styles.taskAlert}>
-                        <Icon name="bell-ring" size={20} color="e3e3e3" />
+                        <Icon name="bell-ring" size={20} color="#e3e3e3" />
                         <Text>
                             {this.props.task.date}
                             -
