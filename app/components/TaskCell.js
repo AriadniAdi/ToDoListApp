@@ -37,6 +37,14 @@ export default class TaskCell extends Component {
     });
   }
 
+  getTitleCapitalized() {
+    let title = this.props.task.title;
+    if (title != null && title.length >= 1) {
+      return title.charAt(0).toUpperCase() + title.slice(1);
+    }
+    return null;
+  }
+
   render() {
     let swipeBtns = [
       {
@@ -61,11 +69,7 @@ export default class TaskCell extends Component {
     };
 
     return (
-      <Swipeout
-        {...swipeSettings}
-        autoClose
-        style={styles.swipeout}
-      >
+      <Swipeout {...swipeSettings} autoClose style={styles.swipeout}>
         <View style={styles.taskCell}>
           <View style={styles.checkBoxArea}>
             <CheckBox
@@ -83,14 +87,21 @@ export default class TaskCell extends Component {
           <View style={styles.taskCellInfo}>
             <View style={styles.alignCell}>
               <Text style={styles.titlePadding}>
-                {this.props.task.title}
+                {this.getTitleCapitalized()}
               </Text>
             </View>
             <View style={styles.taskAlert}>
-              <Icon name="bell-ring" size={17} color="#e3e3e3" marginLeft={2}/>
-              <Text style={{ paddingTop: 1, paddingLeft: 3, alignItems: 'center', color:"#e3e3e3"}} >
+              <Icon name="bell-ring" size={17} color="#e3e3e3" marginLeft={2} />
+              <Text
+                style={{
+                  paddingTop: 1,
+                  paddingLeft: 3,
+                  alignItems: "center",
+                  color: "#e3e3e3"
+                }}
+              >
                 {this.props.task.date}
-                 <Text> - </Text>
+                <Text> - </Text>
                 {this.props.task.hour}
               </Text>
             </View>
@@ -114,7 +125,7 @@ const styles = StyleSheet.create({
     paddingTop: 9,
     paddingBottom: 8,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: '#e3e3e3',
+    borderColor: "#e3e3e3",
     flex: 1,
     backgroundColor: "white"
   },
@@ -142,11 +153,11 @@ const styles = StyleSheet.create({
   swipeout: {
     paddingLeft: 24,
     backgroundColor: "white",
-    paddingRight: 24 
+    paddingRight: 24
   },
   titlePadding: {
-      padding: 5,
-      paddingLeft: 4,
-      marginLeft: 9
+    padding: 5,
+    paddingLeft: 4,
+    marginLeft: 9
   }
 });
