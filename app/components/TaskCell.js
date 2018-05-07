@@ -71,7 +71,7 @@ export default class TaskCell extends Component {
             <CheckBox
               checked={false}
               size={35}
-              borderWidth={3}
+              borderWidth={2}
               borderColorChecked="white"
               backgroundColorChecked="#e54987"
               borderColorUnChecked="#6056a0"

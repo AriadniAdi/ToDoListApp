@@ -44,7 +44,7 @@ export default class CheckBox extends Component {
             borderColor: this.state.borderColor,
             height: this.props.size,
             width: this.props.size,
-            borderRadius: 10
+            borderRadius: 7
           }}
         >
           {this.state.checked &&
