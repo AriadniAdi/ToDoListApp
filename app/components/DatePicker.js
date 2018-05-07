@@ -29,7 +29,8 @@ export default class MyDatePicker extends Component {
         showIcon={false}
         customStyles={{
           dateText: {
-            color: "white"
+            color: "white",
+            fontSize: 18
           },
           dateTouchBody: {
             flex: 1,
@@ -43,6 +44,10 @@ export default class MyDatePicker extends Component {
             flex: 1,
             flexBasis: 0,
             height: 0
+          },
+          placeholderText: {
+            fontSize: 16,
+            color: 'white'
           }
         }}
         onDateChange={date => this.props.onChangeValue(date) }

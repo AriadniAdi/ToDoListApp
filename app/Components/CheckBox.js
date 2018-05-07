@@ -6,7 +6,7 @@ import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
 export default class CheckBox extends Component {
   constructor(props) {
     super(props);
-    this.state = this.getStateFor(props.z);
+    this.state = this.getStateFor(props.checked);
   }
 
   onChange() {
@@ -47,7 +47,7 @@ export default class CheckBox extends Component {
             borderRadius: 10
           }}
         >
-          {!this.state.checked &&
+          {this.state.checked &&
             <Icon
               style={{ textAlign: "center" }}
               size={this.props.size - this.props.borderWidth * 2}

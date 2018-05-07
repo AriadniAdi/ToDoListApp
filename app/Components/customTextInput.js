@@ -31,7 +31,8 @@ export default class CustomTextInput extends Component {
     paddingLeft: 20,
     paddingBottom: 15,
     paddingTop: 15,
-    color: "white"
+    color: "white",
+    fontSize: 18
   },
 
   });
