@@ -2,7 +2,7 @@ import TaskCell from "./components/TaskCell";
 import TaskService from "./taskService";
 import Task from "./components/Task";
 
-import { Button } from 'react-native-material-ui';
+import { Button } from "react-native-material-ui";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import React, { Component } from "react";
 import {
@@ -82,6 +82,10 @@ export default class Main extends Component {
 
   onSaveTask() {
     let task = this.getTaskFromFields();
+    if (!this.isValidTask(task)) {
+      Alert.alert('Campos devem ser preenchidos.')
+      return;
+    }
     this.taskService.saveTask(task);
     if (this.isAnUpdate(task)) {
       this.updateTaskInScreen(task);
@@ -90,6 +94,17 @@ export default class Main extends Component {
       this.insertTaskInScreen(task);
     }
     this.cleanFields();
+  }
+
+  isValidTask(task) {
+    return (
+      task.title &&
+      task.title.length > 0 &&
+      task.hour &&
+      task.hour.length > 0 &&
+      task.date &&
+      task.date.length > 0
+    );
   }
 
   isAnUpdate(task) {
@@ -172,11 +187,12 @@ export default class Main extends Component {
           onChangeHour={text => this.setState({ taskHour: text })}
         />
         <View style={{ height: 0 }}>
-          <Button text=''
+          <Button
+            text=""
             icon={this.state.isEditing ? "mode-edit" : "playlist-add"}
-            style={{ 
-              container: styles.buttonSave, 
-              icon: {marginLeft: 8, color: 'white'}
+            style={{
+              container: styles.buttonSave,
+              icon: { marginLeft: 8, color: "white" }
             }}
             onPress={() => this.onSaveTask()}
           />
@@ -185,7 +201,7 @@ export default class Main extends Component {
         <View style={{ flex: 3 }}>
           <FlatList
             style={styles.listTask}
-            keyExtractor={task => task.id}
+            keyExtractor={item => item.id || this.getNewId()}
             data={this.state.tasks}
             renderItem={({ item }) =>
               <TaskCell
