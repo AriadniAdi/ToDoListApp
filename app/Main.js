@@ -2,6 +2,8 @@ import TaskCell from "./components/TaskCell";
 import TaskService from "./taskService";
 import Task from "./components/Task";
 
+import { Button } from 'react-native-material-ui';
+import Icon from "react-native-vector-icons/MaterialIcons";
 import React, { Component } from "react";
 import {
   Platform,
@@ -23,6 +25,7 @@ export default class Main extends Component {
     this.taskService = new TaskService();
 
     this.state = {
+      isEditing: false,
       currentEditingCell: null,
       tasks: [],
       taskId: null,
@@ -43,6 +46,7 @@ export default class Main extends Component {
 
     this.setState(previousState => {
       return {
+        isEditing: true,
         currentEditingCell: cell,
         taskId: task.id,
         taskTitle: task.title,
@@ -95,6 +99,7 @@ export default class Main extends Component {
   cleanFields() {
     this.setState(previousState => {
       return {
+        isEditing: false,
         currentEditingCell: null,
         taskId: null,
         taskTitle: "",
@@ -166,14 +171,18 @@ export default class Main extends Component {
           onChangeDate={text => this.setState({ taskDate: text })}
           onChangeHour={text => this.setState({ taskHour: text })}
         />
-        <View style={styles.buttonArea}>
-          <TouchableOpacity
-            style={styles.circle}
+        <View style={{ height: 0 }}>
+          <Button text=''
+            icon={this.state.isEditing ? "mode-edit" : "playlist-add"}
+            style={{ 
+              container: styles.buttonSave, 
+              icon: {marginLeft: 8, color: 'white'}
+            }}
             onPress={() => this.onSaveTask()}
           />
         </View>
-        <View style={{ backgroundColor: "white", flex: 2 }}>
-          <Text style={styles.activities}> Minhas Atividades </Text>
+        <Text style={styles.listTaskHeader}> Minhas Atividades </Text>
+        <View style={{ flex: 3 }}>
           <FlatList
             style={styles.listTask}
             keyExtractor={task => task.id}
@@ -196,38 +205,26 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "stretch"
+    alignItems: "stretch",
+    backgroundColor: "white"
   },
-  activities: {
+  listTaskHeader: {
     marginLeft: 16,
-    marginTop: 20,
-    marginBottom: 4,
     fontSize: 20,
-    height: 40
+    paddingTop: 30,
+    paddingBottom: 10
   },
   listTask: {
     flex: 1
   },
-  buttonArea: {
-    width: 60,
-    height: 60,
-    bottom: 20,
-    right: 20,
-    flex: 0.1,
-    alignSelf: "flex-end"
-  },
-  circle: {
+  buttonSave: {
     width: 60,
     height: 60,
     borderRadius: 64,
     alignSelf: "flex-end",
+    paddingHorizontal: 0,
     backgroundColor: "#e54987",
-    bottom: 20,
-    right: 20
-  },
-  image: {
-    alignSelf: "flex-end",
-    bottom: 20,
+    bottom: 30,
     right: 20
   }
 });
