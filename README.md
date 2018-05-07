@@ -3,7 +3,6 @@ Agenda de tarefas mobile
 
 ## Funcionalidades:
 
-
 * Listagem de tarefas.
 * Inclusão de novas tarefas com data e hora e título.
 * Edição das tarefas.
@@ -32,7 +31,21 @@ Agenda de tarefas mobile
  * React Native
 
 ## Execução
-### Configuração ambiente Mac
+
+### Requisitos
+ * Node.js
+``node install``
+
+ * React-Native
+``npm install -g react-native-cli``
+
+ * Watchman
+``npm install watchman``
+ * [android studio](https://developer.android.com/studio/install?hl=pt-br)
+
+ * [Xcode](https://developer.apple.com/xcode/)
+
+### Configuração ambiente MacOs
  
 1. No terminal abra a pasta server dentro da raiz do projeto. E execute:
 2. ``npm install`` para instalação das dependências.
