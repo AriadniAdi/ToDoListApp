@@ -56,4 +56,4 @@ Agenda de tarefas mobile
  ### Se tudo der certo, ao acessar você deve ver a seguinte tela:
  ![Screenshot](AndroidtoDoList.png)
  
- ### Nas [Issues](https://github.com/AriadniAdi/toDoList/issues) voce encontra algumas ideias de melhoria que não tive tempo de desenvolver.
+ ### Nas [Issues](https://github.com/AriadniAdi/ToDoListApp/issues) voce encontra algumas ideias de melhoria que não tive tempo de desenvolver.
