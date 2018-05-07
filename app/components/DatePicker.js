@@ -33,14 +33,10 @@ export default class MyDatePicker extends Component {
           },
           dateInput: {
             borderWidth: 0,
-            paddingBottom: 25,
-            paddingTop: 25,
             flex: 1,
             flexBasis: 0,
-            height: 0,
             paddingLeft: 10,
-            paddingRight: 10,
-            width: 10
+            paddingRight: 10
           },
           placeholderText: {
             fontSize: 16,
