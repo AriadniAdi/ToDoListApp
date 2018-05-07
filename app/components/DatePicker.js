@@ -8,7 +8,7 @@ export default class MyDatePicker extends Component {
     return (
       <DatePicker
         style={{
-          width: 120,
+          width: 130,
           borderWidth: 1,
           marginRight: 10,
           borderColor: "white",
@@ -18,8 +18,6 @@ export default class MyDatePicker extends Component {
         mode={this.props.mode}
         placeholder= {this.props.placeholder}
         format={this.props.format}
-        // minDate="06/05/2018"
-        // maxDate="06/10/2018"
         confirmBtnText="Confirm"
         cancelBtnText="Cancel"
         showIcon={false}

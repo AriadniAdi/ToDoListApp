@@ -36,14 +36,14 @@ export default class Task extends Component {
           <View style={{ flexDirection: "row", marginBottom: 20, height: 50 }}>
             <DatePicker 
               mode="date"
-              placeholder="06/05/2018"
+              placeholder="Ex:06/05/2018"
               format="DD/MM/YYYY"
               value={this.props.dateValue}
               onChangeValue={date => this.props.onChangeDate(date)} />
 
               <DatePicker 
               mode="time"
-              placeholder="15:30"
+              placeholder="Ex:15:30"
               format="hh:mm"
               value={this.props.hourValue}
               styles={styles.dateAndHour}

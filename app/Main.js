@@ -56,7 +56,7 @@ export default class Main extends Component {
     });
   }
 
-  onFinishTask(task) {
+  onDoneTask(task) {
     task.done = true;
     this.deleteTaskOfScreen(task);
     this.taskService.saveTask(task);
@@ -65,7 +65,7 @@ export default class Main extends Component {
   onDeleteTask(task) {
     Alert.alert(
       "Você tem certeza que quer excluir esta atividade?",
-      "Esta ação não pode ser revertida",
+      "Esta ação não pode ser revertida.",
       [
         { text: "Não", onPress: () => {} },
         {
@@ -190,7 +190,7 @@ export default class Main extends Component {
             renderItem={({ item }) =>
               <TaskCell
                 task={item}
-                onFinishTask={() => this.onFinishTask(item)}
+                onDoneTask={() => this.onDoneTask(item)}
                 onEditingTask={cell => this.onEditingTask(item, cell)}
                 onDeleteTask={() => this.onDeleteTask(item)}
                 onCancelEditing={() => this.onCancelEditing()}
