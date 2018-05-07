@@ -33,16 +33,18 @@ export default class Task extends Component {
         </View>
         <View>
           <Text style={styles.defaultLabel}>Me lembrar de fazer em:</Text>
-          <View style={{ flexDirection: "row", marginBottom: 20, height: 50}}>
+          <View style={{ flexDirection: "row", marginBottom: 20, height: 50 }}>
             <DatePicker 
-              mode="datetime"
+              mode="date"
               placeholder="06/05/2018"
+              format="DD/MM/YYYY"
               value={this.props.dateValue}
               onChangeValue={date => this.props.onChangeDate(date)} />
 
               <DatePicker 
               mode="time"
               placeholder="15:30"
+              format="hh:mm"
               value={this.props.hourValue}
               styles={styles.dateAndHour}
               onChangeValue={hour => this.props.onChangeHour(hour)}
@@ -69,6 +71,6 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     padding: 20,
     paddingTop: 10,
-    paddingBottom: 40
+    paddingBottom: 30
   }
 });

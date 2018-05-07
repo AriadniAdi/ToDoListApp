@@ -3,25 +3,21 @@ import DatePicker from "react-native-datepicker";
 import StyleSheet from "react-native";
 
 export default class MyDatePicker extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { date: "06-06-2018" };
-  }
-
+  
   render() {
     return (
       <DatePicker
         style={{
-          width: 100,
+          width: 120,
           borderWidth: 1,
           marginRight: 10,
           borderColor: "white",
           borderRadius: 5
         }}
-        date={this.state.value}
+        date={this.props.value}
         mode={this.props.mode}
         placeholder= {this.props.placeholder}
-        format="DD/MM/YYYY"
+        format={this.props.format}
         // minDate="06/05/2018"
         // maxDate="06/10/2018"
         confirmBtnText="Confirm"
@@ -43,7 +39,10 @@ export default class MyDatePicker extends Component {
             paddingTop: 25,
             flex: 1,
             flexBasis: 0,
-            height: 0
+            height: 0,
+            paddingLeft: 10,
+            paddingRight: 10,
+            width: 10
           },
           placeholderText: {
             fontSize: 16,

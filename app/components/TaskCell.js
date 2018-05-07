@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
     paddingTop: 9,
     paddingBottom: 8,
     borderBottomWidth: StyleSheet.hairlineWidth,
+    borderColor: '#e3e3e3',
     flex: 1,
     backgroundColor: "white"
   },
