@@ -34,7 +34,7 @@ Agenda de tarefas mobile
 
 ### Requisitos
  * Node.js
-``node install``
+``npm install``
 
  * React-Native
 ``npm install -g react-native-cli``
